@@ -6,7 +6,9 @@ I am practicing SQL to improve my skills in data retrieval, manipulation, and an
 
 ## Topics Covered
 
-- **Basic Queries** – SELECT statements, WHERE, DISTINCT, ORDER BY, LIMIT  
+- **Basic Queries** – SELECT statements, WHERE, DISTINCT, ORDER BY, LIMIT 
+- **DDL** - CREATE TABLE, ALTER TABLE, DROP TABLE
+- **DML** - INSERT, UPDATE, DELETE
 - **Joins** – INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN  
 - **Aggregation** – COUNT, SUM, AVG, GROUP BY, HAVING  
 - **Subqueries** – Nested SELECT statements  
