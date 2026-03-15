@@ -1,0 +1,41 @@
+--1. Basic SUM
+--Total salary of all employees.
+SELECT SUM(SALARY) AS TOTAL_SALARY 
+FROM EMPLOYEES;
+
+--2. SUM with WHERE condition
+--Total salary of Sales department.
+SELECT SUM(SALARY) AS TOTAL_SALES_SALARY
+FROM EMPLOYEES
+WHERE DEPARTMENT = 'Sales';
+
+--3. SUM with GROUP BY
+--Total salary per department.
+SELECT DEPARTMENT, SUM(SALARY) AS TOTAL_SALARY
+FROM EMPLOYEES
+GROUP BY DEPARTMENT;
+
+--4. SUM with multiple columns grouping
+--Total salary by department and gender.
+SELECT DEPARTMENT, GENDER, SUM(SALARY) AS TOTAL_SALARY
+FROM EMPLOYEES
+GROUP BY DEPARTMENT, GENDER;
+
+--5. SUM with HAVING
+--Departments with total salary greater than 120000.
+SELECT DEPARTMENT, SUM(SALARY) AS TOTAL_SALARY
+FROM EMPLOYEES
+GROUP BY DEPARTMENT
+HAVING SUM(SALARY) > 120000;
+
+--6. SUM with DISTINCT
+--Sum of unique salary values.
+SELECT SUM(DISTINCT SALARY) AS UNIQUE_SALARY_SUM
+FROM EMPLOYEES;
+
+
+
+
+
+
+

@@ -1,0 +1,39 @@
+--1 Basic AVG
+--Average salary of all employees.
+SELECT AVG(SALARY) AS AVG_SALARY FROM EMPLOYEES;
+
+--2 AVG with WHERE
+--Average salary in Sales department.
+SELECT AVG(SALARY) AS AVG_SALES_SALARY
+FROM EMPLOYEES
+WHERE DEPARTMENT LIKE 'Sales';
+
+--3️ AVG with GROUP BY
+--Average salary per department.
+SELECT DEPARTMENT, AVG(SALARY) AS AVG_SALARY
+FROM EMPLOYEES
+GROUP BY DEPARTMENT;
+
+--4️ AVG with multiple grouping
+--Average salary by department and gender.
+SELECT DEPARTMENT, GENDER, AVG(SALARY) AS AVG_SALARY
+FROM EMPLOYEES
+GROUP BY DEPARTMENT, GENDER;
+
+--5 AVG with HAVING
+--Departments where average salary > 60000.
+SELECT DEPARTMENT, AVG(SALARY) AS AVG_SALARY
+FROM EMPLOYEES
+GROUP BY DEPARTMENT
+HAVING AVG(SALARY) > 60000;
+
+--6 AVG with DISTINCT
+--Average of unique salary values.
+SELECT AVG(DISTINCT SALARY) AS UNIQUE_SALARY
+FROM EMPLOYEES;
+
+
+
+
+
+
