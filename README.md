@@ -12,6 +12,8 @@ I am practicing SQL to improve my skills in data retrieval, manipulation, and an
 - **Joins** – INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN  
 - **Aggregation** – COUNT, SUM, AVG, GROUP BY, HAVING  
 - **Subqueries** – Nested SELECT statements  
-- **Practice Exercises** – Small datasets for real-world query practice  
+- **Practice Exercises** – Small datasets for real-world query practice
+- **SUBQUERIES** -  NESTED_SUBQUERIES, JOIN+SUBQUERIES, CORRELATED_SUBQUERIES 
+- **CTE's** - BASIC CTE's, CTE+GROUP BY, CTE+JOIN, MULTIPLE CTE's
 
 ## Repository Structure
