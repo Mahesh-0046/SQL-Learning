@@ -1,68 +1,43 @@
---Find employees who have the highest salary in each department using RANK()
-WITH MAX_DEPT_SAL AS(
-SELECT *, 
-	RANK() OVER(PARTITION BY DEPT_ID ORDER BY SALARY DESC) AS RANK_
-FROM EMPLOYEES
-)
-SELECT NAME, DEPT_ID, SALARY FROM MAX_DEPT_SAL
-WHERE RANK_ = 1;
-
---Find employees who have the 2nd highest salary in each department using RANK()
-WITH MAX_DEPT_SAL AS(
-SELECT NAME, DEPT_ID, SALARY, 
-	DENSE_RANK() OVER(PARTITION BY DEPT_ID ORDER BY SALARY DESC) AS RANK_
-FROM EMPLOYEES
-)
-SELECT NAME, DEPT_ID, SALARY FROM MAX_DEPT_SAL
-WHERE RANK_ = 2;
-
---Find top 2 salaries in each department (including duplicates)
-WITH MAX_DEPT_SAL AS(
-SELECT NAME, DEPT_ID, SALARY, 
-	DENSE_RANK() OVER(PARTITION BY DEPT_ID ORDER BY SALARY DESC) AS RANK_
-FROM EMPLOYEES
-)
-SELECT NAME, DEPT_ID, SALARY FROM MAX_DEPT_SAL
-WHERE RANK_ <= 2;
-
---Find employees who have the 3rd highest salary in each department using RANK()
-WITH HIGHEST_RANK AS(
-SELECT NAME, DEPT_ID, SALARY,
-	DENSE_RANK() OVER(PARTITION BY DEPT_ID ORDER BY SALARY DESC) AS RANK_
-FROM EMPLOYEES
-)
-SELECT * FROM HIGHEST_RANK
-WHERE RANK_ = 3;
-
---Find employees whose salary is the highest in their department AND also greater than the average salary of that department
-WITH HIGHEST_SAL AS(
-SELECT NAME, DEPT_ID, SALARY,
-	RANK() OVER(PARTITION BY DEPT_ID ORDER BY SALARY DESC) AS RANK_,
-	AVG(SALARY) OVER(PARTITION BY DEPT_ID) AS AVG_SAL
-FROM EMPLOYEES
-)
-SELECT NAME, DEPT_ID, SALARY FROM HIGHEST_SAL
-WHERE RANK_ = 1 AND
-SALARY > AVG_SAL;
-
---Find employees who have the 2nd lowest salary in each department AND whose salary is less than the department average
-WITH LOW_SAL AS(
-SELECT NAME, DEPT_ID, SALARY,
-	DENSE_RANK() OVER(PARTITION BY DEPT_ID ORDER BY SALARY ASC) AS RANK_,
-	AVG(SALARY) OVER(PARTITION BY DEPT_ID) AS AVG_SAL
-FROM EMPLOYEES
-)
-SELECT NAME, DEPT_ID, SALARY FROM LOW_SAL
-WHERE RANK_ = 2 AND
-SALARY < AVG_SAL;
-
---Find employees whose salary is in the top 3 of their department AND greater than overall company average
+--Write a query to find Top 3 salaries in each department
+--Requirements:
+--Each department separately
+--Handle ties properly
 WITH CTE AS(
 SELECT NAME, DEPT_ID, SALARY,
-	DENSE_RANK() OVER(PARTITION BY DEPT_ID ORDER BY SALARY DESC) AS DENSE_R,
-	AVG(SALARY) OVER() AS COMPANY_AVG
+	DENSE_RANK() OVER(PARTITION BY DEPT_ID ORDER BY SALARY DESC) AS RANK_
+FROM EMPLOYEES
+)
+SELECT NAME, DEPT_ID, SALARY, RANK_ FROM CTE
+WHERE RANK_ <= 3; 
+
+--Write a query to find employees who earn more than their department average salary
+--Requirements:
+--Compare each employee with their own department average
+--Return: name, dept_id, salary
+WITH CTE AS(
+SELECT NAME, DEPT_ID, SALARY,
+	AVG(SALARY) OVER(PARTITION BY DEPT_ID) AS AVG_SAL
 FROM EMPLOYEES
 )
 SELECT NAME, DEPT_ID, SALARY FROM CTE
-WHERE DENSE_R <= 3 AND
-SALARY > COMPANY_AVG;
+WHERE SALARY > AVG_SAL;
+
+--Find duplicate records in a table
+SELECT NAME, COUNT(*)
+FROM EMPLOYEES
+GROUP BY NAME
+HAVING COUNT(*) > 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
