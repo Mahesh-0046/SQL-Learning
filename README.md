@@ -11,9 +11,10 @@ I am practicing SQL to improve my skills in data retrieval, manipulation, and an
 - **DML** - INSERT, UPDATE, DELETE
 - **Joins** – INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN  
 - **Aggregation** – COUNT, SUM, AVG, GROUP BY, HAVING  
-- **Subqueries** – Nested SELECT statements  
+- **Subqueries** – Nested and Correlated subqueries
 - **Practice Exercises** – Small datasets for real-world query practice
 - **SUBQUERIES** -  NESTED_SUBQUERIES, JOIN+SUBQUERIES, CORRELATED_SUBQUERIES 
 - **CTE's** - BASIC CTE's, CTE+GROUP BY, CTE+JOIN, MULTIPLE CTE's
+- **Window Functions** - Row_number(), Rank(), Dense_rank()
 
 ## Repository Structure
