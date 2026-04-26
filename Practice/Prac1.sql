@@ -1,0 +1,58 @@
+--Find the 2nd highest salary from the employees table
+WITH CTE AS(
+SELECT NAME, SALARY,
+	DENSE_RANK() OVER(ORDER BY SALARY DESC) AS RANK_
+FROM EMPLOYEES
+)
+SELECT NAME, SALARY, RANK_ FROM CTE
+WHERE RANK_ = 2;
+
+--Find duplicate records in a table (based on name).
+SELECT NAME, COUNT(*)
+FROM EMPLOYEES
+GROUP BY NAME
+HAVING COUNT(*) > 1;
+
+--OR
+
+SELECT * 
+FROM EMPLOYEES
+WHERE NAME IN (
+SELECT NAME
+FROM EMPLOYEES
+GROUP BY NAME
+HAVING COUNT(*) > 1
+);
+
+--Find employees who earn more than their manager
+SELECT E.NAME AS EMP_NAME,
+	   E.SALARY AS EMP_SAL,
+	   M.NAME AS MGR_NAME,
+	   M.SALARY AS MGR_SAL
+FROM EMPLOYEES E
+JOIN EMPLOYEES M
+ON M.EMP_ID = E.MGR_ID
+WHERE E.SALARY > M.SALARY;
+
+--Find the highest salary in each department
+SELECT DEPT_ID, MAX(SALARY)
+FROM EMPLOYEES
+GROUP BY DEPT_ID;
+
+--Find employees who have the highest salary in each department
+WITH CTE AS(
+SELECT NAME, DEPT_ID, SALARY,
+	   RANK() OVER(PARTITION BY DEPT_ID ORDER BY SALARY DESC) RNK
+FROM EMPLOYEES
+)
+SELECT NAME, DEPT_ID, SALARY
+FROM CTE
+WHERE RNK = 1;
+
+--Find employees whose salary is above the average salary
+SELECT NAME, SALARY 
+FROM EMPLOYEES
+WHERE SALARY > (
+SELECT AVG(SALARY)
+FROM EMPLOYEES
+);
