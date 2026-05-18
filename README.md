@@ -15,6 +15,7 @@ I am practicing SQL to improve my skills in data retrieval, manipulation, and an
 - **Practice Exercises** – Small datasets for real-world query practice
 - **SUBQUERIES** -  NESTED_SUBQUERIES, JOIN+SUBQUERIES, CORRELATED_SUBQUERIES 
 - **CTE's** - BASIC CTE's, CTE+GROUP BY, CTE+JOIN, MULTIPLE CTE's
-- **Window Functions** - Row_number(), Rank(), Dense_rank()
+- **Window Functions** - Row_number(), Rank(), Dense_rank(), Lag(), Lead(), Sum() over(), Avg() over()
+- **CASE**
 
 ## Repository Structure
