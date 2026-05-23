@@ -46,6 +46,6 @@ HAVING MAX(SALARY) > 65000;
 --Find the lowest unique salary:
 SELECT MIN(DISTINCT SALARY) AS MIN_UNIQUE_SALARY
 FROM EMPLOYEES;
---Find the lowest unique salary:
+--Find the highest unique salary:
 SELECT MAX(DISTINCT SALARY) AS MAX_UNIQUE_SALARY
 FROM EMPLOYEES;
