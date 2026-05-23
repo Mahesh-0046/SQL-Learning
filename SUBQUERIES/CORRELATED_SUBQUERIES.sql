@@ -5,7 +5,7 @@ WHERE DEPT_ID = E.DEPT_ID);
 
 --Find employees whose salary is greater than their department average
 SELECT * FROM EMPLOYEES E
-WHERE E.SALARY < (SELECT AVG(SALARY) FROM EMPLOYEES
+WHERE E.SALARY > (SELECT AVG(SALARY) FROM EMPLOYEES
 WHERE DEPT_ID = E.DEPT_ID);
 
 --Find employees who have the highest salary in their department
